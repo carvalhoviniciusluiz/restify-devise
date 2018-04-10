@@ -4,3 +4,7 @@ node_js:
   - 9
   - 8
 services: mongodb
+env:
+  MONGODB_URI=uri
+  SECRET_KEY=key
+  MAILER_KEY=key
