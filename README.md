@@ -6,6 +6,10 @@
 </p>
 
 <p align="center">
+  <a href="https://travis-ci.org/carvalhoviniciusluiz/restify-devise"><img alt="Travis Status" src="https://img.shields.io/travis/carvalhoviniciusluiz/restify-devise/master.svg?label=travis&maxAge=43200"/></a>
+</p>
+
+<p align="center">
   It also allows users to deploy in Heroku without leaving the web browser and with little configuration.
 </p>
 <p align="center">
