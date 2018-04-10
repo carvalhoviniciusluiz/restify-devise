@@ -1,0 +1,52 @@
+{
+  "name": "restify-devise",
+  "description": "Starter project for a rest api with restify & node-devise",
+  "keywords": [
+    "restify",
+    "render",
+    "joi",
+    "passport",
+    "jwt",
+    "i18n",
+    "mongodb",
+    "mongoose",
+    "node-devise",
+    "boilerplate",
+    "api",
+    "es6"
+  ],
+  "website": "https://restify-devise.herokuapp.com",
+  "repository": "https://github.com/carvalhoviniciusluiz/restify-devise",
+  "logo": "https://avatars3.githubusercontent.com/u/8597527?v=4&s=400",
+  "success_url": "/",
+  "addons": ["mongolab"],
+  "env": {
+    "NPM_CONFIG_PRODUCTION": {
+      "value": "false"
+    },
+    "NODE_ENV": {
+      "value": "production"
+    },
+    "PROCESS_TYPE": {
+      "value": "app"
+    },
+    "PORT": {
+      "value": "8088"
+    },
+    "CLIENT_URI": {
+      "value": "https://github.com/carvalhoviniciusluiz/restify-devise#readme"
+    },
+    "MONGODB_URI": {
+      "value": ""
+    },
+    "SECRET_KEY": {
+      "value": ""
+    },
+    "MAILER_KEY": {
+      "value": ""
+    },
+    "MAILER_USER": {
+      "value": "donotreply@donotreply.com"
+    }
+  }
+}

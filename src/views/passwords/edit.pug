@@ -1,0 +1,37 @@
+doctype transitional
+html(xmlns='http://www.w3.org/1999/xhtml')
+  head
+    meta(name='viewport', content='width=device-width')
+    meta(http-equiv="content-type", content="text/html; charset=UTF-8")
+    link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u", crossorigin="anonymous")
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700', rel='stylesheet', type='text/css')
+    link(href=`${uri}/assets/style.css`, rel='stylesheet', type='text/css')
+
+    title= i18n.t('passwords.edit.title')
+  body.pace-done
+    .pace.pace-inactive
+      .pace-progress(data-progress-text='100%', data-progress='99', style='width: 100%;')
+        .pace-progress-inner
+      .pace-activity
+    #container.cls-container
+      #bg-overlay
+      .cls-content
+        .cls-content-sm.panel
+          .panel-body
+            h1.h3= i18n.t('passwords.edit.header')
+            p.pad-btm= i18n.t('passwords.edit.paragraph')
+
+            if (error)
+              .alert.alert-dark= error
+
+            form(action="/password_changed", method="POST")
+              input(type="hidden", name="token", value=`${token}`)
+              .form-group
+                input.form-control(type='password', placeholder=`${i18n.t('passwords.edit.fields.password')}`, name="password")
+              .form-group
+                input.form-control(type='password', placeholder=`${i18n.t('passwords.edit.fields.password_confirmation')}`, name="password_confirmation")
+              .form-group.text-right
+                button.btn.btn-danger.btn-lg.btn-block(type='submit')= i18n.t('passwords.edit.action')
+            .pad-top Copyright © 2018 Restify Devise, Inc.
+    script(src="https://code.jquery.com/jquery-3.3.1.min.js", integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=", crossorigin="anonymous")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa", crossorigin="anonymous")

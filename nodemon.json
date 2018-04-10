@@ -1,0 +1,4 @@
+{
+  "verbose": true,
+  "exec": "babel-node"
+}
