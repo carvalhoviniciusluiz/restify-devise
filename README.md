@@ -7,6 +7,7 @@
 
 <p align="center">
   <a href="https://travis-ci.org/carvalhoviniciusluiz/restify-devise"><img alt="Travis Status" src="https://img.shields.io/travis/carvalhoviniciusluiz/restify-devise/master.svg?label=travis&maxAge=43200"/></a>
+  <a href="https://scrutinizer-ci.com/g/carvalhoviniciusluiz/restify-devise/?branch=master"><img alt="Code Coverage" src="https://scrutinizer-ci.com/g/carvalhoviniciusluiz/restify-devise/badges/quality-score.png?b=master"/></a>
 </p>
 
 <p align="center">
