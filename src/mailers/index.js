@@ -5,7 +5,6 @@ import logger from 'winston'
 import config from '../../config'
 import { mailerSender } from './senders'
 import { userLanguageObject } from '../helpers/i18n'
-import acceptLanguage from 'accept-language'
 import * as jwt from 'jsonwebtoken'
 
 let options = {}

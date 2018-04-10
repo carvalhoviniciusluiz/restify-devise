@@ -14,7 +14,7 @@ i18next.init({
   resources
 })
 
-i18next.handler = function (options) {
+i18next.handler = function () {
   return function (request, response, next) {
     request.i18n = i18next
     request.t = i18next.t.bind(i18next)
@@ -27,25 +27,29 @@ export default i18next
 
 // sets the language by the header
 export const changeLangRequest = function (request) {
-  if (request.i18n) {
-    const language = request.headers['accept-language']
-    request.i18n.changeLanguage(acceptLanguage.get(language))
-    return request.i18n
-  }
+  assert.object(request, 'request')
+  assert.object(request.i18n, 'request.i18n')
+
+  const { i18n } = request
+
+  const language = request.headers['accept-language']
+  i18n.changeLanguage(acceptLanguage.get(language))
+
+  return i18n
 }
 
 // defines a language according to user settings
-export const userLanguageObject = function (options) {
-  assert.object(options, 'options')
-  assert.object(options.user, 'options.user')
-  assert.object(options.user.account, 'options.user.account')
-  assert.ok(options.user.account.language, 'options.user.account.language')
+export const userLanguageObject = function (request) {
+  assert.object(request, 'request')
+  assert.object(request.user, 'request.user')
 
-  const { user } = options
+  const { user } = request
+
+  assert.object(user.account, 'user.account')
+  assert.ok(user.account.language, 'user.account.language')
 
   const language = user.account.language
   i18next.changeLanguage(acceptLanguage.get(language))
 
   return i18next
 }
-

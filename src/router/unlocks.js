@@ -3,7 +3,7 @@
 import passport from 'passport'
 import { unlocks } from '../controllers'
 
-export default function (server, controller) {
+export default function (server) {
   server.get({
     name: 'unlock//get',
     path: '/unlock'

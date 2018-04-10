@@ -192,22 +192,18 @@ function onError (err) {
   /* eslint-disable no-unreachable */
   switch (err.code) {
     case 'EACCES':
-      logger.error('[server]', `${bind} requires elevated privileges`)
-      process.exit(1)
+      err.message = `${bind} requires elevated privileges`
+      logger.error('[server]', err.message)
       break
 
     // lsof -i tcp:8088
     // kill -9 <PID>
     case 'EADDRINUSE':
-      logger.error('[server]', `${bind} is already in use`)
-      // https://nodejs.org/api/process.html#process_signal_events
-      // process.kill(process.pid, 'EADDRINUSE')
-      process.exit(1)
+      err.message = `${bind} is already in use`
+      logger.error('[server]', err.message)
       break
-
-    default:
-      throw err
   }
+  throw err
 }
 
 module.exports = server

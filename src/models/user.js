@@ -19,7 +19,7 @@ userSchema.plugin(devise, { i18n })
 userSchema.plugin(mailer, { i18n })
 
 // https://github.com/Automattic/mongoose/issues/1251
-let instance = null
+let instance
 
 try {
   // http://mongoosejs.com/docs/api.html#index_Mongoose-model
