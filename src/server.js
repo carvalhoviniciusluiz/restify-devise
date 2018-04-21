@@ -7,6 +7,7 @@ import * as errors from 'restify-errors'
 import chalk from 'chalk'
 import config from '../config'
 import router from './router'
+// import favicon from 'serve-favicon'
 import compression from 'compression'
 import helmet from 'helmet'
 import validator from 'restify-joi-middleware'
@@ -15,6 +16,9 @@ import restifyRender from 'restify-render-middleware'
 import { pug } from 'consolidate'
 import acceptLanguage from 'accept-language'
 import i18n, { languages } from './helpers/i18n'
+import socketio from 'socket.io'
+import channels from './channels'
+import corsMiddleware from 'restify-cors-middleware'
 
 // set supported languages
 acceptLanguage.languages(languages)
@@ -27,11 +31,23 @@ const server = restify.createServer({
   ignoreTrailingSlash: true
 })
 
+// set websocket app
+const io = socketio.listen(server.server)
+channels(io)
+
 server.use(restify.plugins.acceptParser(server.acceptable))
 server.use(restify.plugins.queryParser())
 server.use(restify.plugins.bodyParser())
 server.use(restify.plugins.fullResponse())
 server.use(restify.plugins.gzipResponse())
+
+// CORS middleware
+const cors = corsMiddleware({
+  preflightMaxAge: 5
+})
+
+server.pre(cors.preflight)
+server.use(cors.actual)
 
 // https://www.npmjs.com/package/compression#filter-1
 server.use(compression({
