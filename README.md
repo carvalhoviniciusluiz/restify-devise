@@ -23,6 +23,8 @@
 
 - Try it online - [restify-devise.herokuapp](http://restify-devise.herokuapp.com/)
 
+- Checkout our demo - [github.io/devise-client](https://carvalhoviniciusluiz.github.io/devise-client/#/)
+
 ## Note
 
 - See the [node-devise](https://www.npmjs.com/package/node-devise) documentation for how to configure the user schema :).
