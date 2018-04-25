@@ -43,7 +43,8 @@ server.use(restify.plugins.gzipResponse())
 
 // CORS middleware
 const cors = corsMiddleware({
-  preflightMaxAge: 5
+  preflightMaxAge: 5,
+  allowHeaders: ['Authorization']
 })
 
 server.pre(cors.preflight)
