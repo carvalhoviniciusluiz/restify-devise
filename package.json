@@ -4,12 +4,11 @@
   "description": "Starter project for a rest api with restify & node-devise",
   "private": true,
   "scripts": {
+    "heroku-postbuild": "minify dist -d dist",
     "postinstall": "npm run build",
-    "start": "node dist",
-    "clean": "rm -rf dist",
-    "mfy": "minify dist -d dist",
     "build": "babel . --out-dir dist --ignore Procfile,node_modules,test,*.spec.js,*.json,*.sh --no-comments --copy-files",
     "lint": "eslint .",
+    "start": "node dist",
     "dev": "NODE_ENV=development nodemon .",
     "test": "NODE_ENV=test mocha lib src",
     "test:file": "NODE_ENV=test mocha"

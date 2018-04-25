@@ -11,15 +11,10 @@ async function create (req, res, next) {
   const { token } = req.query
   const decoded = await jwt.verify(token, config.jwt.secret)
 
-  const uri = (req.isSecure())
-    ? 'https'
-    : 'http' + '://' + req.headers.host
-
   res.render('passwords/edit.pug', {
     token,
     i18n: changeLangRequest(req),
-    error: decoded.error,
-    uri
+    error: decoded.error
   })
 }
 
