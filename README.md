@@ -23,7 +23,7 @@
 
 - Try it online - [restify-devise.herokuapp](http://restify-devise.herokuapp.com/)
 
-- Checkout our demo - [github.io/devise-client](https://carvalhoviniciusluiz.github.io/devise-client/#/)
+- Checkout our demo - [github.io/devise-vue](https://carvalhoviniciusluiz.github.io/devise-vue/#/)
 
 ## Note
 
