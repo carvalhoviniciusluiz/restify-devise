@@ -2,7 +2,7 @@
 
 module.exports = {
   password: 'Senha',
-  password_confirmation: 'Confirmar senha',
+  passwordConfirmation: 'Confirmação da senha',
   language: 'Idioma',
   email: 'Email',
   confirmed: 'Confirmado'

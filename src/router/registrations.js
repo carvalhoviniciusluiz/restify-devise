@@ -17,6 +17,9 @@ export default function (server) {
             password: Joi.string()
               .min(6)
               .max(15)
+              .required(),
+            passwordConfirmation: Joi.string()
+              .valid(Joi.ref('password'))
               .required()
           }).required()
         }).required()

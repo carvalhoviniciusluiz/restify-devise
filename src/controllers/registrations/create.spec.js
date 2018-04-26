@@ -9,7 +9,7 @@ const agent = request.agent(require('../../server'))
 /* eslint-disable no-undef */
 describe('Registrations: controllers', () => {
   context('/registration', () => {
-    it('POST. Should throw exception if body is not provided', async () => {
+    it('POST. Should throws an exception if body is not provided', async () => {
       try {
         await agent.post(`/registration`)
       } catch (error) {
@@ -19,7 +19,7 @@ describe('Registrations: controllers', () => {
       }
     })
 
-    it('POST. Should throw exception if email is not provided', async () => {
+    it('POST. Should throws an exception if email is not provided', async () => {
       try {
         await agent.post(`/registration`).send({
           payload: {
@@ -33,7 +33,7 @@ describe('Registrations: controllers', () => {
       }
     })
 
-    it('POST. Should throw exception if email invalid', async () => {
+    it('POST. Should throws an exception if email invalid', async () => {
       try {
         await agent.post(`/registration`).send({ payload: { email: 'email' } })
       } catch (error) {
@@ -43,10 +43,44 @@ describe('Registrations: controllers', () => {
       }
     })
 
-    it('POST. Should throw exception if email already exists', async () => {
+    it('POST. Should throws an exception if passwordConfirmation is not provided', async () => {
       const credentials = {
         payload: {
           password: faker.internet.password(),
+          email: faker.internet.email().toLowerCase()
+        }
+      }
+      try {
+        await agent.post(`/registration`).send(credentials)
+      } catch (error) {
+        expect(error).to.have.status(400)
+        expect(error.response.body).to.have.all.keys('code', 'message')
+      }
+    })
+
+    it('POST. Should throws an exception if the confirmation password is not equal for an informed password', async () => {
+      const credentials = {
+        payload: {
+          password: faker.internet.password(),
+          passwordConfirmation: 'fake',
+          email: faker.internet.email().toLowerCase()
+        }
+      }
+      try {
+        await agent.post(`/registration`).send(credentials)
+      } catch (error) {
+        expect(error).to.have.status(400)
+        expect(error.response.body).to.have.all.keys('code', 'message')
+      }
+    })
+
+    it('POST. Should throws an exception if email already exists', async () => {
+      const password = faker.internet.password()
+
+      const credentials = {
+        payload: {
+          password,
+          passwordConfirmation: password,
           email: faker.internet.email().toLowerCase()
         }
       }
@@ -59,7 +93,7 @@ describe('Registrations: controllers', () => {
       }
     })
 
-    it('POST. Should throw exception if password is not provided', async () => {
+    it('POST. Should throws an exception if password is not provided', async () => {
       try {
         await agent.post(`/registration`).send({ email: 'email@email' })
       } catch (error) {
@@ -69,7 +103,7 @@ describe('Registrations: controllers', () => {
       }
     })
 
-    it('POST. Should throw exception if password invalid', async () => {
+    it('POST. Should throws an exception if password invalid', async () => {
       try {
         await agent.post(`/registration`).send({
           payload: {
@@ -85,9 +119,12 @@ describe('Registrations: controllers', () => {
     })
 
     it('POST. 200 ok', async () => {
+      const password = faker.internet.password()
+
       const credentials = {
         payload: {
-          password: faker.internet.password(),
+          password,
+          passwordConfirmation: password,
           email: faker.internet.email().toLowerCase()
         }
       }
